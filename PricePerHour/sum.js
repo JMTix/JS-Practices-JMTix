@@ -62,15 +62,22 @@ function calculateTotal(price, hours, discount) {
     return total
 };
 
+function cleanEntry(inputs) {
+    inputs.forEach(input => {
+        input.value = "";
+    });
+};
 // Event
 submitButton.addEventListener("click", function ()  {
     const total = calculateTotal(Number(price.value), Number(hours.value), Number(discount.value))
      
-    if (total === undefined) {
+    if (total === undefined) { //Case error
         result.textContent = "Theres an invalid value"
-        result.style.color = "#ff0000"
+        result.style.color = "#ff0000";
+
+        cleanEntry([price, hours, discount])
     } else {
-        result.textContent = total
+        result.textContent = total.toFixed(2)
         console.log("The total is: " + total)
     };
 
