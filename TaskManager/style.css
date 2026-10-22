@@ -1,0 +1,19 @@
+.task-container {
+    display: flex;
+    flex-flow: column nowrap;
+
+    width: 90vw;
+    height: 5vh;
+
+    padding: 5px;
+    margin: auto;
+    margin-top: 10px;
+    background-color: rgb(223, 223, 223);
+    border-radius: 3px;
+}
+
+.task-list {
+    display: flex;
+    flex-flow: column, nowrap;
+    margin: auto;
+}
