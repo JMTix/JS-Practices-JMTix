@@ -1,9 +1,14 @@
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 .task-container {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: column wrap;
 
     width: 90vw;
-    height: 5vh;
+    min-height: 5vh;
 
     padding: 5px;
     margin: auto;
@@ -14,6 +19,30 @@
 
 .task-list {
     display: flex;
-    flex-flow: column, nowrap;
-    margin: auto;
+    flex-flow: column nowrap;
+    
+    width: 90%;
+    height: auto;
+}
+
+.task-element {
+    display: flex;
+    flex-flow: row, nowrap;
+
+    align-items: center;
+    padding-left: 5%;
+}
+
+.task-text {
+    
+}
+
+#delete-button {
+    height: 4.6vh;
+
+    margin-left: auto;
+    background: red;
+
+    border: 3px solid rgba(rgba(180, 180, 180, 0.705));
+    border-radius: 6px;
 }
