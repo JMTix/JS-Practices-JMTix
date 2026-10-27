@@ -106,6 +106,10 @@ p {
 .task-text {
     flex: 1;
 }
+
+.task-text.done {
+  text-decoration: line-through;
+}
 .delete-button {
     
     padding: 0.4rem 0.9rem;

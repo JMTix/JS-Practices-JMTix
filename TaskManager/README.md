@@ -8,3 +8,8 @@ As the name says, this is a task manager where you can create, eliminate and com
 
 Even though my designs still looking pretty basic, i learned a lot about color composition on web pages. 
 Also, i improved my abilities in CSS, looking foward to learn more.
+The most important thing i learned related to JS, was LocalStorage, for now, it was the most complicated thing to learn but at the end i understanded:
+- getItem() and SetItem()
+- JSON
+- Event delegation
+- How to manage functions correctly 

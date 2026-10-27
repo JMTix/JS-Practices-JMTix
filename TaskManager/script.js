@@ -1,10 +1,12 @@
 //JMTix
 
 const addTaskButton = document.querySelector("#add-task");
-const deleteButton = document.querySelector("#delete-button");
-
 const taskList = document.querySelector(".task-list");
 
+let tasks = []; // [{id, task, done}]
+const KEY = "taskManager:Task"; 
+
+//Task HTMl
 function elementFromHtml(html) {
   const template = document.createElement("template");
 
@@ -13,44 +15,122 @@ function elementFromHtml(html) {
   return template.content.firstElementChild;
 }
 
-//Task HTMl
-const taskElement = elementFromHtml(`
-        <li>
-           <div class="task-element">
+function createTaskElement(task) {
+    const li = elementFromHtml(`
+    <li>
+      <div id="${task.id}" class="task-element">
 
-                <input type="checkbox" class="task-checkbox">
+        <input type="checkbox" class="task-checkbox">
 
-                <p contenteditable="true" class="task-text"> New task </p>
+        <p contenteditable="true" class="task-text"></p>
 
-                <button class="delete-button"> Delete </button>
-           </div>
-        </li>
-    `);
+        <button class="delete-button">Delete</button>
 
-const taskClone = taskElement.cloneNode(true);
+      </div>
+    </li>
+  `);
 
-//Event
+    const checkbox = li.querySelector(".task-checkbox");
+    const taskText = li.querySelector(".task-text");
+    
+    checkbox.checked = task.done;
+    taskText.textContent = task.text;
+    taskText.classList.toggle("done", task.done);
 
-taskList.appendChild(taskElement);
-addTaskButton.addEventListener("click", function () {
-  taskList.appendChild(taskClone.cloneNode(true));
-});
+    return li;
+};
+
+//Functions
+
+function loadTasks() {
+  try {
+    const data = localStorage.getItem(KEY);
+    const parsed = data ? JSON.parse(data) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.error("No se pudo cargar: " + error);
+    return [];
+  }
+}
+
+function saveTasks() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(tasks));
+  } catch(error) {
+    console.log("No se pudo guardar: " + error);
+  }
+}
+
+function render() {
+  taskList.innerHTML = "";
+
+  tasks.forEach(task => {
+    taskList.appendChild(createTaskElement(task));
+  });
+}
+
+
+
+
+function addTask() {
+  
+  tasks.push({
+    id: `item-${Date.now()}`,
+    text: "New task",
+    done: false,
+  });
+
+  saveTasks();
+  render();
+}
+
+function completeTask(checkbox) {
+  const id = checkbox.closest(".task-element").id;
+  const task = tasks.find((t) => t.id === id);
+  if (!task) return;
+
+  task.done = checkbox.checked;
+  saveTasks();
+  render();
+}
+
+function eliminateTask(button) {
+  const id = button.closest(".task-element").id;
+  tasks = tasks.filter((t) => t.id !== id);
+
+  saveTasks();
+  render();
+}
+
+function updateText(textElement) {
+  const id = textElement.closest(".task-element").id;
+  const task = tasks.find((t) => t.id === id);
+  if (!task) return;
+
+  task.text = textElement.textContent.trim();
+  saveTasks();
+}
+//Events
+addTaskButton.addEventListener("click", addTask);
 
 taskList.addEventListener("click", function (del) {
   const button = del.target.closest(".delete-button");
   if (!button) return;
-
-  button.closest("li").remove()
+  eliminateTask(button);
 });
 
 taskList.addEventListener("change", function (check) {
   const button = check.target.closest(".task-checkbox");
   if (!button) return;
-
-  const taskText = button.closest(".task-element").querySelector(".task-text");
-  if (button.checked) {
-    taskText.style.textDecoration = "line-through";
-  } else {
-    taskText.style.textDecoration = "none";
-  }
+  completeTask(button);
 });
+
+taskList.addEventListener("focusout", function(textE) {
+  const text = textE.target.closest(".task-text");
+  if (!text) return;
+  updateText(text)
+});
+
+//Start 
+tasks = loadTasks();
+render();
