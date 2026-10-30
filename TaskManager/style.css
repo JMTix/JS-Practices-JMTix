@@ -4,12 +4,12 @@
 
 :root {
    
-    --background:    #ebeff8;
-    --surface:       #ffffff;
+    --background:#ebeff8;
+    --surface:#ffffff;
     --primary-color: #2f55d4;
-    --text:          #1b2240;
-    --on-primary:    #ffffff;
-    --delete-color:  #d93636;
+    --text:#1b2240;
+    --on-primary:#ffffff;
+    --delete-color:#d93636;
 
 }
 
