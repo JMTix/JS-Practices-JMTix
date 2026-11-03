@@ -1,71 +1,148 @@
 :root {
-    --background:   #F1EFE8;
-    --primary-color:    #111111;
+    --primary-color:   #F1EFE8;
+    --background:    #111111;
     --secondary-color: #858585;
     --text: #B9B4A8;
+
+    --font-display: 'Anton', sans-serif;
+    --font-body: 'Archivo', sans-serif;
 }   
 
 * {
-    background-color: var(--background);
-    color: var(--secondary-color);
-
     margin: 0;
     padding: 0;
 }
+
+body {
+    background-color: var(--background);
+ 
+
+    font-family: var(--font-body);
+}
+
 header {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: flex-end;
 
     width: 100%;
-    height: 3rem;
+    height: 3rem;   
     
-
-    background: var(--primary-color);
-
+    font-family: var(--font-display);
+    background: var(--background);
 }
 
-.title {
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text)
+}
+.logo {
     background: none;
+    margin-right: auto;
+
+    filter: brightness(0) invert(1);
+
+    width: 10.5rem;
+    height: 100%;
 }
 
-.main-subtitles {
+
+.menu {
+    width: 5rem;
+    height: 100%;
+
+    color: var(--text);
+    font-weight: bold;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+
+
+}
+
+.menu:hover {
+    transform: scale(1.1);
+}
+.home-nav {
+    order: 1;
+}
+
+.shop-nav {
+    order: 2;
+}
+
+.about-nav {
+    order: 3;
+}
+
+.help-nav {
+    order: 4;
+}
+
+.bg-image {
+    background-image: url(assets/clothe-menu-image.jpg);
+
+    background-repeat: repeat-x;
+    background-size: cover;
+
+
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+
+
+    width: 100%;
+    height: fit-content;
+}
+
+.main-titles {
     display: flex;
     flex-flow: column wrap;
-    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+    row-gap: 3rem;
 
     margin: auto;
-    padding: 1rem;
+    padding-top: 1.6rem;
 
-    width: 60vw;
-    height: fit-content;
-
-    border: 2px solid black;
+    width: 70vw;
+    height: 15rem;
 
 }
 
-.subtitle-1 {
+.titles {
+    font-family: var(--font-display);
 
-
-    color: var(--primary-color);
+    color: var(--text);
     text-align: center;
-}
-
-.subtitle-2 {
     color: var(--primary-color);
-    text-align: center;
 }
 
+.title-1 {
+
+    display: inline-block;
+    transform: scaleY(3.2);
+    
+    font-size: 2rem;
+    font-weight: 800 
+}
+
+
+.title-2 {
+    font-size: 1.3rem;
+    font-family: var(--font-body);
+}
 .button-container {
     display: flex;
-    flex-flow:row nowrap;
-    justify-content: space-around;
+    flex-flow:row wrap;
+    justify-content: space-evenly;
 
     margin: auto;
     padding: 2rem;
     padding-top: 4rem;
     
-
-    border: 2px solid black
 }
 
 .button {
@@ -75,6 +152,8 @@ header {
     margin-right: 2rem;
 
     background: none;
-    border: 2.2px solid var(--secondary-color);
+    border: 3px solid var(--secondary-color);
 
+    font-weight: 800;
+    color: var(--primary-color);
 }
