@@ -20,13 +20,16 @@ body {
     font-family: var(--font-body);
 }
 
-header {
+nav {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: flex-end;
-
+    align-items: center;
+    
+    column-gap: 1vw;
+    margin-right: 1vw;
     width: 100%;
-    height: 3rem;   
+    height: clamp(4.7rem, fit-content, fit-content);
     
     font-family: var(--font-display);
     background: var(--background);
@@ -34,8 +37,10 @@ header {
 
 footer {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
+
+    padding-top: 2rem;
 
     color: var(--text)
 }
@@ -44,43 +49,34 @@ footer {
     margin-right: auto;
 
     filter: brightness(0) invert(1);
-
-    width: 10.5rem;
+    min-width:40%;
+    width: clamp(8rem, 9rem, 10rem);
     height: 100%;
+
+    flex-shrink: 0.8;   
+
+    align-self: center;
 }
 
 
 .menu {
-    width: 5rem;
-    height: 100%;
+    width: fit-content;
+    height: fit-content;
 
     color: var(--text);
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 1.4rem;
     background: none;
     border: none;
 
+    outline: none;
 
 }
 
 .menu:hover {
     transform: scale(1.1);
 }
-.home-nav {
-    order: 1;
-}
 
-.shop-nav {
-    order: 2;
-}
-
-.about-nav {
-    order: 3;
-}
-
-.help-nav {
-    order: 4;
-}
 
 .bg-image {
     background-image: url(assets/clothe-menu-image.jpg);
@@ -148,8 +144,6 @@ footer {
 .button {
     width: 7rem;
     height: 3.7rem;
-
-    margin-right: 2rem;
 
     background: none;
     border: 3px solid var(--secondary-color);
